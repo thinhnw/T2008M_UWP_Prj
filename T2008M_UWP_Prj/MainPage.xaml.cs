@@ -12,6 +12,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using T2008M_UWP_Prj.Models;
+using T2008M_UWP_Prj.Pages;
+using System.Diagnostics;
+using System.Collections;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,9 +27,37 @@ namespace T2008M_UWP_Prj
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static Frame MainFrame;
         public MainPage()
         {
             this.InitializeComponent();
+            MyFrame.Navigate(typeof(Pages.Home.HomePage));
+            MainFrame = MyFrame;
+            MySplitView.IsPaneOpen = true;
+
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<Type> pages = new List<Type>();
+            pages.Add(typeof(Pages.Home.HomePage));
+            pages.Add(typeof(Pages.Products.ProductsIndexPage));
+
+            MainFrame.Navigate(pages[Menu.SelectedIndex]);
+        }
+
+        private void Menu_Loaded(object sender, RoutedEventArgs e)
+        {
+            Menu.Items.Add(new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uEC19 ", ComponentName = "HomeItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Eat-In", MenuPage = "eat-in", Icon = "\uE80f ", ComponentName = "EatInItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Collection", MenuPage = "collection", Icon = "\uE71D ", ComponentName = "CollectionItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Delivery", MenuPage = "delivery", Icon = "\uED57 ", ComponentName = "DeliveryItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Take Away", MenuPage = "take-away", Icon = "\uED56 ", ComponentName = "TakeAwayItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Driver Payment", MenuPage = "driver-payment", Icon = "\uE9A6 ", ComponentName = "DriverPaymentItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Customers", MenuPage = "customers", Icon = "\uE77B ", ComponentName = "CustomersItem" });
+            
+            Menu.SelectedIndex = 0;
+        }
+     
     }
 }
