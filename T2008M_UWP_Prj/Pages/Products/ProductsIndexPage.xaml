@@ -5,17 +5,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:locals="using:T2008M_UWP_Prj.Pages.Products"
-    xmlns:models="using:T2008M_UWP_Prj.Models"
+    xmlns:models="using:T2008M_UWP_Prj.Models.View"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <GridView ItemsSource="{x:Bind Products}" Margin="0,400,0,0">
+        <GridView x:Name="CategoryList" Margin="0,250,0,0" Loaded="CategoryList_Loaded">
             <GridView.ItemTemplate>
-                <DataTemplate x:Name="IconTextTemplate" x:DataType="models:Product">
-                    <StackPanel Width="264" Padding="10,0,10,0" AutomationProperties.Name="{x:Bind Name}" Background="#E2E2E2">
+                <DataTemplate x:Name="IconTextTemplate" x:DataType="models:Category">
+                    <StackPanel 
+                        Width="265" 
+                        Padding="10,0,10,0" 
+                        AutomationProperties.Name="{x:Bind Name}" Background="#E2E2E2"
+                        Tapped="StackPanel_Tapped"
+                    >
                         <TextBlock Margin="12,0,0,0" Width="204" Text="{x:Bind Name}" FontWeight="Bold" FontSize="24" />
-                        <Image MaxHeight="200">
+                        <Image MaxHeight="300">
                             <Image.Source>
                                 <BitmapImage UriSource="{x:Bind Img.UriSource}" />
                             </Image.Source>

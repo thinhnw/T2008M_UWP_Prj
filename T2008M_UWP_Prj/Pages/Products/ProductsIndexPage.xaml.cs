@@ -24,39 +24,43 @@ namespace T2008M_UWP_Prj.Pages.Products
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class ProductsIndexPage : Page
-    {
-        List<Product> Products;
+    {        
         public ProductsIndexPage()
         {
-            this.InitializeComponent();
-            Products = new List<Product>();
-            Debug.WriteLine(BaseUri);
-            Products.Add(new Product { 
-                Name = "Burger",
-                Slug="burger", 
-                Price = 13, 
-                ShortDescription = "This is a burger",
-                FullDescription = "Delicious burger",
-                Img = new BitmapImage(new Uri("ms-appx:///Assets/burger-2.jpg"))
-            });
-            Products.Add(new Product
+            this.InitializeComponent();            
+            
+        }
+
+        public async void RenderCategories()
+        {
+            Services.CategoryService service = new Services.CategoryService();
+            Categories categories = await service.GetMenu();
+            if (categories != null)
             {
-                Name = "Cake",
-                Slug = "cake",
-                Price = 13,
-                ShortDescription = "This is a cake",
-                FullDescription = "Delicious cake",
-                Img = new BitmapImage(new Uri("ms-appx:///Assets/cake.jfif"))
-            });
-            Products.Add(new Product
-            {
-                Name = "Pizza",
-                Slug = "pizza",
-                Price = 13,
-                ShortDescription = "This is a burger",
-                FullDescription = "Delicious pizza",
-                Img = new BitmapImage(new Uri("ms-appx:///Assets/pizza.jpg"))
-            });
+                foreach (Category ctg in categories.data)
+                {
+                    Debug.WriteLine(ctg.name);
+                    CategoryList.Items.Add(new Models.View.Category
+                    {
+                        Name = ctg.name,
+                        Id = ctg.id,
+                        Img = new BitmapImage(new Uri(ctg.icon))
+                    });                    
+                }
+            }
+        }
+
+        private void CategoryList_Loaded(object sender, RoutedEventArgs e)
+        {
+            RenderCategories();
+        }
+
+        private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+            Models.View.Category selectedItem = (Models.View.Category) CategoryList.SelectedItem;
+            Debug.WriteLine(selectedItem.Name);
+            MainPage.MainFrame.Navigate(typeof(Pages.Products.FoodByCategoryPage), selectedItem);            
         }
     }
 }

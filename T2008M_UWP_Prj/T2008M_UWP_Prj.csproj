@@ -116,24 +116,37 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Adapters\FoodGroup.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\FoodByCategory.cs" />
+    <Compile Include="Models\Food.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\View\Category.cs" />
+    <Compile Include="Models\View\Food.cs" />
     <Compile Include="Pages\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Products\ProductsDetailsPage.xaml.cs">
-      <DependentUpon>ProductsDetailsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Products\FoodByCategoryPage.xaml.cs">
+      <DependentUpon>FoodByCategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Products\FoodPage.xaml.cs">
+      <DependentUpon>FoodPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Products\ProductsIndexPage.xaml.cs">
       <DependentUpon>ProductsIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\FoodByCategoryService.cs" />
+    <Compile Include="Services\FoodService.cs" />
+    <Compile Include="Services\TodaySpecialService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -171,7 +184,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Products\ProductsDetailsPage.xaml">
+    <Page Include="Pages\Products\FoodByCategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Products\FoodPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,6 +206,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

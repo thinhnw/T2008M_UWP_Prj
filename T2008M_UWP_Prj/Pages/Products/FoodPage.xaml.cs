@@ -20,9 +20,9 @@ namespace T2008M_UWP_Prj.Pages.Products
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductsDetailsPage : Page
+    public sealed partial class FoodPage : Page
     {
-        public ProductsDetailsPage()
+        public FoodPage()
         {
             this.InitializeComponent();
         }
