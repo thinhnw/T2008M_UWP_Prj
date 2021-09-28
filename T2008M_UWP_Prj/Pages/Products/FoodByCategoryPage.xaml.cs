@@ -67,7 +67,9 @@ namespace T2008M_UWP_Prj.Pages.Products
 
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            Models.View.Food selectedItem = (Models.View.Food) FoodList.SelectedItem;
+            Debug.WriteLine(selectedItem.Name);
+            MainPage.MainFrame.Navigate(typeof(Pages.Products.FoodPage), selectedItem);
         }
     }
 }

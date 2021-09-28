@@ -8,7 +8,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <RelativePanel >
 
-    </Grid>
+        <RelativePanel
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.AlignVerticalCenterWithPanel="True"
+        >
+            <Image 
+                Name="Thumbnail"                          
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                Width="350"
+                Height="330"
+            >
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind FoodDetail.Img.UriSource}" />
+                </Image.Source>
+            </Image>
+            <StackPanel
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.RightOf="Thumbnail" Width="400"
+            >
+                <TextBlock Name="NameTextBlock" FontSize="24" FontWeight="Bold" FontFamily="Helvatica" TextWrapping="Wrap"/>
+                <TextBlock Name="PriceTextBlock" FontSize="20" FontWeight="Bold" Foreground="#F4AE07" FontFamily="Helvatica" />
+                <TextBlock>-------------------------------------------------</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <TextBlock Margin="0,0,10,0" VerticalAlignment="Center">Quantity</TextBlock>
+                    <Button x:Name="ReduceQuantityButton" Click="ReduceQuantityButton_Click">-</Button>
+                    <TextBox x:Name="QuantityTextBox" BeforeTextChanging="QuantityTextBox_BeforeTextChanging"></TextBox>
+                    <Button x:Name="IncreaseQuantityButton" Click="IncreaseQuantityButton_Click">+</Button>
+                </StackPanel>
+                <Button Margin="0,20,0,0" Background="#F4AE07" Foreground="White" Padding="20 5">Add to cart</Button>
+            </StackPanel>
+          
+        </RelativePanel>
+    </RelativePanel>
 </Page>
