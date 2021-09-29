@@ -42,6 +42,7 @@ namespace T2008M_UWP_Prj
             List<Type> pages = new List<Type>();
             pages.Add(typeof(Pages.Home.HomePage));
             pages.Add(typeof(Pages.Products.ProductsIndexPage));
+            pages.Add(typeof(Pages.ShoppingCart.ShoppingCart));
 
             MainFrame.Navigate(pages[Menu.SelectedIndex]);
         }

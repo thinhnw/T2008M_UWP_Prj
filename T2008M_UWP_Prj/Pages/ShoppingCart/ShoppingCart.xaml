@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="T2008M_UWP_Prj.Pages.ShoppingCart.ShoppingCart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:T2008M_UWP_Prj.Pages.ShoppingCart"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:T2008M_UWP_Prj.Models.View"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <RelativePanel Padding="20,150,20,50">
+        <TextBlock RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="Title" FontWeight="Bold" FontSize="30">Shopping Cart</TextBlock>
+        <ScrollViewer RelativePanel.Below="Title" RelativePanel.Above="Footer" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="0,20">
+            <ItemsControl x:Name="FoodList" Loaded="FoodList_Loaded">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:Food">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <RelativePanel Grid.Column="0">
+                                <Image>
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{x:Bind Img.UriSource}" />
+                                    </Image.Source>
+                                </Image>
+                            </RelativePanel>
+                            <RelativePanel Grid.Column="1">
+                                <TextBlock Text="{x:Bind Name}" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap"/>
+                            </RelativePanel>
+                            <RelativePanel Margin="0,20,0,0" Grid.Column="2">
+                                <Button x:Name="ReduceQuantityButton" Click="ReduceQuantityButton_Click" RelativePanel.LeftOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">-</Button>
+                                <TextBox x:Name="QuantityTextBox" BeforeTextChanging="QuantityTextBox_BeforeTextChanging" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"></TextBox>
+                                <Button x:Name="IncreaseQuantityButton" Click="IncreaseQuantityButton_Click" RelativePanel.RightOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">+</Button>
+                            </RelativePanel>
+                            <RelativePanel Grid.Column="3">
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">$50</TextBlock>
+                            </RelativePanel>
+                            <RelativePanel Grid.Column="4">
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">X</TextBlock>
+                            </RelativePanel>
+                        </Grid>
+                    </DataTemplate>    
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <RelativePanel RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" x:Name="Footer">
+            <Button Background="White" Foreground="DeepSkyBlue">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xf0b0;"  Margin="0,8,0,0" Foreground="DeepSkyBlue"/>
+                    <TextBlock FontSize="24" Margin="10">
+                        Continue Shopping
+                    </TextBlock>
+                </StackPanel>
+            </Button>
+            <StackPanel RelativePanel.LeftOf="CheckoutButton" RelativePanel.AlignVerticalCenterWithPanel="True" Orientation="Horizontal" Margin="0,0,30,0">
+                <TextBlock RelativePanel.LeftOf="Total" FontSize="24" LineHeight="36" Margin="0,10,5,0">Total:</TextBlock>
+                <TextBlock x:Name="Total" RelativePanel.LeftOf="CheckoutButton"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="0,5">$24.90</TextBlock>
+            </StackPanel>
+
+            <Button Name="CheckoutButton" Foreground="White" RelativePanel.AlignRightWithPanel="True" Background="#F4AE07">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="24" Margin="10">
+                        Checkout
+                    </TextBlock>
+                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xf0af;"  Margin="0,8,0,0" Foreground="White"/>
+                </StackPanel>
+            </Button>
+        </RelativePanel>
+    </RelativePanel>
+</Page>

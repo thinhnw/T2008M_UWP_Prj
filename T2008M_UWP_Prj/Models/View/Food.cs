@@ -13,6 +13,7 @@ namespace T2008M_UWP_Prj.Models.View
         public string Name { get; set; }
         public BitmapImage Img { get; set; }        
         public int Price { get; set; }
+        public int Quantity { get; set; }
     }  
 
 }

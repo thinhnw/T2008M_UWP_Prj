@@ -142,6 +142,9 @@
     <Compile Include="Pages\Products\ProductsIndexPage.xaml.cs">
       <DependentUpon>ProductsIndexPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ShoppingCart\ShoppingCart.xaml.cs">
+      <DependentUpon>ShoppingCart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\FileHandlingService.cs" />
@@ -194,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Products\ProductsIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShoppingCart\ShoppingCart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
