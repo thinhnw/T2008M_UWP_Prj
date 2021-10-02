@@ -35,6 +35,8 @@ namespace T2008M_UWP_Prj
             MainFrame = MyFrame;
             MySplitView.IsPaneOpen = true;
 
+            Adapters.SQLiteHelper db = Adapters.SQLiteHelper.GetInstance();
+
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,13 +51,13 @@ namespace T2008M_UWP_Prj
 
         private void Menu_Loaded(object sender, RoutedEventArgs e)
         {
-            Menu.Items.Add(new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uEC19 ", ComponentName = "HomeItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Eat-In", MenuPage = "eat-in", Icon = "\uE80f ", ComponentName = "EatInItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Collection", MenuPage = "collection", Icon = "\uE71D ", ComponentName = "CollectionItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Delivery", MenuPage = "delivery", Icon = "\uED57 ", ComponentName = "DeliveryItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Take Away", MenuPage = "take-away", Icon = "\uED56 ", ComponentName = "TakeAwayItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Driver Payment", MenuPage = "driver-payment", Icon = "\uE9A6 ", ComponentName = "DriverPaymentItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Customers", MenuPage = "customers", Icon = "\uE77B ", ComponentName = "CustomersItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uEC19", ComponentName = "HomeItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Eat-In", MenuPage = "eat-in", Icon = "\uED56", ComponentName = "EatInItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Shopping Cart", MenuPage = "cart", Icon = "\ue7bf", ComponentName = "CollectionItem" });
+            //Menu.Items.Add(new MenuItem() { Name = "Delivery", MenuPage = "delivery", Icon = "\uED57 ", ComponentName = "DeliveryItem" });
+            //Menu.Items.Add(new MenuItem() { Name = "Take Away", MenuPage = "take-away", Icon = "\uED56 ", ComponentName = "TakeAwayItem" });
+            //Menu.Items.Add(new MenuItem() { Name = "Driver Payment", MenuPage = "driver-payment", Icon = "\uE9A6 ", ComponentName = "DriverPaymentItem" });
+            //Menu.Items.Add(new MenuItem() { Name = "Customers", MenuPage = "customers", Icon = "\uE77B ", ComponentName = "CustomersItem" });
             
             Menu.SelectedIndex = 0;
         }

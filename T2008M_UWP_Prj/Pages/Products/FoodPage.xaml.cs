@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using T2008M_UWP_Prj.Models;
+using T2008M_UWP_Prj.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,7 +25,7 @@ namespace T2008M_UWP_Prj.Pages.Products
     public sealed partial class FoodPage : Page
     {
 
-        Models.View.Food FoodDetail;
+        Food FoodDetail;
         public FoodPage()
         {
             this.InitializeComponent();
@@ -32,9 +33,9 @@ namespace T2008M_UWP_Prj.Pages.Products
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            FoodDetail = e.Parameter as Models.View.Food;
-            PriceTextBlock.Text = FoodDetail.Price + " VND";
-            NameTextBlock.Text = FoodDetail.Name;
+            FoodDetail = e.Parameter as Food;
+            PriceTextBlock.Text = FoodDetail.price + " VND";
+            NameTextBlock.Text = FoodDetail.name;
         }
 
         private void QuantityTextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -55,6 +56,24 @@ namespace T2008M_UWP_Prj.Pages.Products
         {
             int quantity = Int32.Parse(QuantityTextBox.Text);
             QuantityTextBox.Text = (quantity + 1).ToString();            
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            CartService cart = new CartService();
+            CartItem item = new CartItem()
+            {
+                Id = FoodDetail.id,
+                Name = FoodDetail.name,
+                Image = FoodDetail.image,
+                Price = FoodDetail.price,
+                Qty = Int32.Parse(QuantityTextBox.Text),
+            };
+            cart.AddToCart(item);
+            QuantityTextBox.Text = "0";
+
+            //var list = cart.GetCart();
+
         }
     }
 }

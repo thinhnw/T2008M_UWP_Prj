@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using T2008M_UWP_Prj.Models;
+using T2008M_UWP_Prj.Services;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,51 +26,70 @@ namespace T2008M_UWP_Prj.Pages.ShoppingCart
     /// </summary>
     public sealed partial class ShoppingCart : Page
     {
-        int ctgId = 1;
+        CartService service;
         public ShoppingCart()
         {
-            this.InitializeComponent();           
+            this.InitializeComponent();
+           
+            //var list = car
         }
 
         private void ReduceQuantityButton_Click(object sender, RoutedEventArgs e)
-        {
-
+        {          
+            int id = (int)((Button) sender).Tag;
+            int qty = service.ItemCount(id);
+            service.UpdateItem(id, qty - 1);
+            RenderCart();
         }
 
         private void QuantityTextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c)) || args.NewText.Length == 0;
+          
         }
 
         private void IncreaseQuantityButton_Click(object sender, RoutedEventArgs e)
-        {
-
+        { 
+            int id = (int)((Button)sender).Tag;
+            int qty = service.ItemCount(id);
+            service.UpdateItem(id, qty + 1);
+            RenderCart();
         }
 
-        public async void RenderFoodByCategory()
-        {
-            Services.FoodByCategoryService service = new Services.FoodByCategoryService();
-            
-            FoodByCategory foodByCategory = await service.GetFoodByCategory(ctgId);
-            if (foodByCategory != null)
+        public void RenderCart()
+        {            
+            service = new CartService();
+
+            List<CartItem> cart = service.GetCart();
+            Cart.Items.Clear();
+            if (cart != null)
             {
-                foreach (Food food in foodByCategory.foods)
-                {                    
-                    FoodList.Items.Add(new Models.View.Food
-                    {
-                        Name = food.name,
-                        Id = food.id,
-                        Img = new BitmapImage(new Uri(food.image)),
-                        Price = food.price
-                    });
+                foreach (CartItem item in cart)
+                {
+                    Cart.Items.Add(item);
                 }
             }
+
+            TotalAmount.Text = service.GetTotalAmount().ToString();            
         }
 
         private void FoodList_Loaded(object sender, RoutedEventArgs e)
         {
-            RenderFoodByCategory();
+            RenderCart();
         }
-      
+
+        private void QuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int id = (int) ((TextBox) sender).Tag;
+            service.UpdateItem(id, Int32.Parse(((TextBox) sender).Text));
+            RenderCart();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).Tag;
+            service.RemoveItem(id);
+            RenderCart();
+        }
     }
 }

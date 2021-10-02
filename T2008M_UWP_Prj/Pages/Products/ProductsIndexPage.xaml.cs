@@ -40,12 +40,7 @@ namespace T2008M_UWP_Prj.Pages.Products
                 foreach (Category ctg in categories.data)
                 {
                     Debug.WriteLine(ctg.name);
-                    CategoryList.Items.Add(new Models.View.Category
-                    {
-                        Name = ctg.name,
-                        Id = ctg.id,
-                        Img = new BitmapImage(new Uri(ctg.icon))
-                    });                    
+                    CategoryList.Items.Add(ctg);
                 }
             }
         }
@@ -58,8 +53,8 @@ namespace T2008M_UWP_Prj.Pages.Products
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
             
-            Models.View.Category selectedItem = (Models.View.Category) CategoryList.SelectedItem;
-            Debug.WriteLine(selectedItem.Name);
+            Category selectedItem = (Category) CategoryList.SelectedItem;
+            Debug.WriteLine(selectedItem.name);
             MainPage.MainFrame.Navigate(typeof(Pages.Products.FoodByCategoryPage), selectedItem);            
         }
     }

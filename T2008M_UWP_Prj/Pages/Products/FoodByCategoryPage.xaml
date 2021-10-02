@@ -5,30 +5,30 @@
     xmlns:local="using:T2008M_UWP_Prj.Pages.Products"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:T2008M_UWP_Prj.Models.View"
+    xmlns:models="using:T2008M_UWP_Prj.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
         <TextBlock x:Name="Title" Margin="0,150,0,0" Text="" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" />
         <ScrollViewer MaxHeight="600">
-            <GridView x:Name="FoodList" Margin="0,20,0,0" Loaded="FoodList_Loaded">
+            <GridView Name="FoodList" Margin="0,20,0,0" Loaded="FoodList_Loaded">
                 <GridView.ItemTemplate>
                     <DataTemplate x:Name="IconTextTemplate" x:DataType="models:Food">
                         <StackPanel 
                             Width="265" 
                             Padding="10,10,10,50" 
-                            AutomationProperties.Name="{x:Bind Name}" Background="#E2E2E2"
+                            AutomationProperties.Name="{x:Bind name}" Background="#E2E2E2"
                             Tapped="StackPanel_Tapped"
                         >
-                            <TextBlock Margin="12,0,0,0" Text="{x:Bind Name}" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" />
+                            <TextBlock Margin="12,0,0,0" Text="{x:Bind name}" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" />
                             <Image Height="250">
                                 <Image.Source>
-                                    <BitmapImage UriSource="{x:Bind Img.UriSource}" />
+                                    <BitmapImage UriSource="{x:Bind bImage.UriSource}" />
                                 </Image.Source>
                             </Image>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Margin="0,0,0,0" Text="{x:Bind Price}" FontWeight="Bold" FontSize="16" />
+                                <TextBlock Margin="0,0,0,0" Text="{x:Bind price}" FontWeight="Bold" FontSize="16" />
                                 <TextBlock Margin="10,0,0,0" Text="VND" FontWeight="Bold" FontSize="16" />
                             </StackPanel>
                             

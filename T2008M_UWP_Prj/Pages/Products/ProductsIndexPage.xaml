@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:locals="using:T2008M_UWP_Prj.Pages.Products"
-    xmlns:models="using:T2008M_UWP_Prj.Models.View"
+    xmlns:models="using:T2008M_UWP_Prj.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -16,13 +16,13 @@
                     <StackPanel 
                         Width="265" 
                         Padding="10,0,10,0" 
-                        AutomationProperties.Name="{x:Bind Name}" Background="#E2E2E2"
+                        AutomationProperties.Name="{x:Bind name}" Background="#E2E2E2"
                         Tapped="StackPanel_Tapped"
                     >
-                        <TextBlock Margin="12,0,0,0" Width="204" Text="{x:Bind Name}" FontWeight="Bold" FontSize="24" />
+                        <TextBlock Margin="12,0,0,0" Width="204" Text="{x:Bind name}" FontWeight="Bold" FontSize="24" />
                         <Image MaxHeight="300">
                             <Image.Source>
-                                <BitmapImage UriSource="{x:Bind Img.UriSource}" />
+                                <BitmapImage UriSource="{x:Bind bImage.UriSource}" />
                             </Image.Source>
                         </Image>
                     </StackPanel>

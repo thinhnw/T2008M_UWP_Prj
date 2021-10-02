@@ -5,16 +5,16 @@
     xmlns:local="using:T2008M_UWP_Prj.Pages.ShoppingCart"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:T2008M_UWP_Prj.Models.View"
+    xmlns:models="using:T2008M_UWP_Prj.Models"    
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <RelativePanel Padding="20,150,20,50">
         <TextBlock RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="Title" FontWeight="Bold" FontSize="30">Shopping Cart</TextBlock>
         <ScrollViewer RelativePanel.Below="Title" RelativePanel.Above="Footer" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="0,20">
-            <ItemsControl x:Name="FoodList" Loaded="FoodList_Loaded">
+            <ItemsControl x:Name="Cart" Loaded="FoodList_Loaded">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="models:Food">
+                    <DataTemplate x:DataType="models:CartItem">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -26,23 +26,32 @@
                             <RelativePanel Grid.Column="0">
                                 <Image>
                                     <Image.Source>
-                                        <BitmapImage UriSource="{x:Bind Img.UriSource}" />
+                                        <BitmapImage UriSource="{x:Bind bImage.UriSource}" />
                                     </Image.Source>
                                 </Image>
                             </RelativePanel>
                             <RelativePanel Grid.Column="1">
                                 <TextBlock Text="{x:Bind Name}" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap"/>
                             </RelativePanel>
-                            <RelativePanel Margin="0,20,0,0" Grid.Column="2">
-                                <Button x:Name="ReduceQuantityButton" Click="ReduceQuantityButton_Click" RelativePanel.LeftOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">-</Button>
-                                <TextBox x:Name="QuantityTextBox" BeforeTextChanging="QuantityTextBox_BeforeTextChanging" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"></TextBox>
-                                <Button x:Name="IncreaseQuantityButton" Click="IncreaseQuantityButton_Click" RelativePanel.RightOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">+</Button>
+                            <RelativePanel Grid.Column="2">
+                                <Button x:Name="ReduceQuantityButton" Tag="{x:Bind Id}" Click="ReduceQuantityButton_Click" RelativePanel.LeftOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">-</Button>
+                                <TextBox x:Name="QuantityTextBox" Text="{x:Bind Qty}" Tag="{x:Bind Id}" 
+                                         BeforeTextChanging="QuantityTextBox_BeforeTextChanging" 
+                                         TextChanged="QuantityTextBox_TextChanged"
+                                         RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"></TextBox>
+                                <Button x:Name="IncreaseQuantityButton" Tag="{x:Bind Id}" Click="IncreaseQuantityButton_Click" RelativePanel.RightOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">+</Button>
                             </RelativePanel>
                             <RelativePanel Grid.Column="3">
-                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">$50</TextBlock>
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{x:Bind Price}" Name="Price" />
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="Price" Margin="5,0">VND</TextBlock>
                             </RelativePanel>
                             <RelativePanel Grid.Column="4">
-                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">X</TextBlock>
+                                <Button RelativePanel.AlignVerticalCenterWithPanel="True" 
+                                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                        Tag="{x:Bind Id}"
+                                        x:Name="DeleteButton"
+                                        Click="DeleteButton_Click"
+                                >X</Button>
                             </RelativePanel>
                         </Grid>
                     </DataTemplate>    
@@ -59,8 +68,10 @@
                 </StackPanel>
             </Button>
             <StackPanel RelativePanel.LeftOf="CheckoutButton" RelativePanel.AlignVerticalCenterWithPanel="True" Orientation="Horizontal" Margin="0,0,30,0">
-                <TextBlock RelativePanel.LeftOf="Total" FontSize="24" LineHeight="36" Margin="0,10,5,0">Total:</TextBlock>
-                <TextBlock x:Name="Total" RelativePanel.LeftOf="CheckoutButton"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="0,5">$24.90</TextBlock>
+                <TextBlock RelativePanel.LeftOf="TotalAmount" FontSize="24" LineHeight="36" Margin="0,10,5,0">Total:</TextBlock>
+                
+                <TextBlock x:Name="TotalAmount" RelativePanel.LeftOf="Currency"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="0,5"></TextBlock>
+                <TextBlock x:Name="Currency" RelativePanel.LeftOf="CheckoutButton"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="5,5">VND</TextBlock>
             </StackPanel>
 
             <Button Name="CheckoutButton" Foreground="White" RelativePanel.AlignRightWithPanel="True" Background="#F4AE07">

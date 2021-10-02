@@ -33,9 +33,9 @@ namespace T2008M_UWP_Prj.Pages.Products
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Models.View.Category ctg = e.Parameter as Models.View.Category;
-            ctgId = ctg.Id;
-            Title.Text = ctg.Name;
+            Category ctg = e.Parameter as Category;
+            ctgId = ctg.id;
+            Title.Text = ctg.name;
             Debug.WriteLine("ctg id 1st " + ctgId);
         }
 
@@ -47,29 +47,25 @@ namespace T2008M_UWP_Prj.Pages.Products
             if (foodByCategory != null)
             {
                 foreach (Food food in foodByCategory.foods)
-                {
-                    Debug.WriteLine(food.name);
-                    FoodList.Items.Add(new Models.View.Food
-                    {
-                        Name = food.name,
-                        Id = food.id,
-                        Img = new BitmapImage(new Uri(food.image)),
-                        Price = food.price
-                    });
+
+                    FoodList.Items.Add(food);
                 }
             }
-        }
-       
+
         private void FoodList_Loaded(object sender, RoutedEventArgs e)
         {
-            RenderFoodByCategory();
+          
+            RenderFoodByCategory();                    
+               
         }
 
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Models.View.Food selectedItem = (Models.View.Food) FoodList.SelectedItem;
-            Debug.WriteLine(selectedItem.Name);
-            MainPage.MainFrame.Navigate(typeof(Pages.Products.FoodPage), selectedItem);
+                Food selectedItem = (Food)FoodList.SelectedItem;
+                Debug.WriteLine(selectedItem.name);
+                MainPage.MainFrame.Navigate(typeof(FoodPage), selectedItem);
         }
+        
     }
+       
 }
