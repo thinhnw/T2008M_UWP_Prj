@@ -40,7 +40,15 @@
                 </StackPanel>
                 <Button Margin="0,20,0,0" Background="#F4AE07" Foreground="White" Padding="20 5" Name="AddButton" Click="AddButton_Click">Add to cart</Button>
             </StackPanel>
-          
+            
         </RelativePanel>
+        <Button RelativePanel.AlignBottomWithPanel="True" Name="Back" Click="Back_Click" Background="White" Foreground="DeepSkyBlue" Margin="20">
+            <StackPanel Orientation="Horizontal">
+                <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xf0b0;"  Margin="0,8,0,0" Foreground="DeepSkyBlue"/>
+                <TextBlock FontSize="24" Margin="10">
+                        Continue Shopping
+                </TextBlock>
+            </StackPanel>
+        </Button>
     </RelativePanel>
 </Page>

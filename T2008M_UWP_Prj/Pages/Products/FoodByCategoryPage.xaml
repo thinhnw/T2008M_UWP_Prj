@@ -9,10 +9,19 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBlock x:Name="Title" Margin="0,150,0,0" Text="" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" />
-        <ScrollViewer MaxHeight="600">
-            <GridView Name="FoodList" Margin="0,20,0,0" Loaded="FoodList_Loaded">
+    <RelativePanel>
+        <TextBlock x:Name="Title" Margin="0,150,0,0" Text="" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" 
+                   RelativePanel.AlignTopWithPanel="True"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+        />
+        <ScrollViewer 
+            RelativePanel.Below="Title"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+             Margin="0,20,0,50"
+        >
+            <GridView Name="FoodList" Loaded="FoodList_Loaded">
                 <GridView.ItemTemplate>
                     <DataTemplate x:Name="IconTextTemplate" x:DataType="models:Food">
                         <StackPanel 
@@ -31,7 +40,7 @@
                                 <TextBlock Margin="0,0,0,0" Text="{x:Bind price}" FontWeight="Bold" FontSize="16" />
                                 <TextBlock Margin="10,0,0,0" Text="VND" FontWeight="Bold" FontSize="16" />
                             </StackPanel>
-                            
+
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
@@ -42,5 +51,5 @@
                 </GridView.ItemsPanel>
             </GridView>
         </ScrollViewer>
-    </StackPanel>
+    </RelativePanel>
 </Page>

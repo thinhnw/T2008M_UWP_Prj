@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using T2008M_UWP_Prj.Models;
 using T2008M_UWP_Prj.Services;
+using T2008M_UWP_Prj.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using T2008M_UWP_Prj.Pages.Products;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -90,6 +92,17 @@ namespace T2008M_UWP_Prj.Pages.ShoppingCart
             int id = (int)((Button)sender).Tag;
             service.RemoveItem(id);
             RenderCart();
+        }
+
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.MainFrame.Navigate(typeof(ProductsIndexPage));
+            MainPage.MainMenu.SelectedIndex = 1;
         }
     }
 }

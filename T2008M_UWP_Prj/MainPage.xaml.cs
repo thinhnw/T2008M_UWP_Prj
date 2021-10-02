@@ -28,11 +28,13 @@ namespace T2008M_UWP_Prj
     public sealed partial class MainPage : Page
     {
         public static Frame MainFrame;
+        public static ListBox MainMenu;
         public MainPage()
         {
             this.InitializeComponent();
             MyFrame.Navigate(typeof(Pages.Home.HomePage));
             MainFrame = MyFrame;
+            MainMenu = Menu;
             MySplitView.IsPaneOpen = true;
 
             Adapters.SQLiteHelper db = Adapters.SQLiteHelper.GetInstance();

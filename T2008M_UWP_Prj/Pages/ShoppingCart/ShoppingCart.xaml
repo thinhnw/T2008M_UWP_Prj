@@ -59,7 +59,9 @@
             </ItemsControl>
         </ScrollViewer>
         <RelativePanel RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" x:Name="Footer">
-            <Button Background="White" Foreground="DeepSkyBlue">
+            <Button Background="White" Foreground="DeepSkyBlue"
+                    Name="Back" Click="Back_Click"
+            >
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xf0b0;"  Margin="0,8,0,0" Foreground="DeepSkyBlue"/>
                     <TextBlock FontSize="24" Margin="10">
@@ -74,7 +76,9 @@
                 <TextBlock x:Name="Currency" RelativePanel.LeftOf="CheckoutButton"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="5,5">VND</TextBlock>
             </StackPanel>
 
-            <Button Name="CheckoutButton" Foreground="White" RelativePanel.AlignRightWithPanel="True" Background="#F4AE07">
+            <Button Name="CheckoutButton" Foreground="White" RelativePanel.AlignRightWithPanel="True" Background="#F4AE07"
+                    Click="CheckoutButton_Click"
+            >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="24" Margin="10">
                         Checkout

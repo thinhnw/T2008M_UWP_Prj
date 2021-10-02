@@ -75,5 +75,10 @@ namespace T2008M_UWP_Prj.Pages.Products
             //var list = cart.GetCart();
 
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.MainFrame.GoBack();
+        }
     }
 }
