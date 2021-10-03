@@ -31,24 +31,24 @@
                                 </Image>
                             </RelativePanel>
                             <RelativePanel Grid.Column="1">
-                                <TextBlock Text="{x:Bind Name}" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap"/>
+                                <TextBlock Text="{x:Bind name}" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap"/>
                             </RelativePanel>
                             <RelativePanel Grid.Column="2">
-                                <Button x:Name="ReduceQuantityButton" Tag="{x:Bind Id}" Click="ReduceQuantityButton_Click" RelativePanel.LeftOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">-</Button>
-                                <TextBox x:Name="QuantityTextBox" Text="{x:Bind Qty}" Tag="{x:Bind Id}" 
+                                <Button x:Name="ReduceQuantityButton" Tag="{x:Bind id}" Click="ReduceQuantityButton_Click" RelativePanel.LeftOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">-</Button>
+                                <TextBox x:Name="QuantityTextBox" Text="{x:Bind qty}" Tag="{x:Bind id}" 
                                          BeforeTextChanging="QuantityTextBox_BeforeTextChanging" 
                                          TextChanged="QuantityTextBox_TextChanged"
                                          RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"></TextBox>
-                                <Button x:Name="IncreaseQuantityButton" Tag="{x:Bind Id}" Click="IncreaseQuantityButton_Click" RelativePanel.RightOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">+</Button>
+                                <Button x:Name="IncreaseQuantityButton" Tag="{x:Bind id}" Click="IncreaseQuantityButton_Click" RelativePanel.RightOf="QuantityTextBox" RelativePanel.AlignVerticalCenterWithPanel="True">+</Button>
                             </RelativePanel>
                             <RelativePanel Grid.Column="3">
-                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{x:Bind Price}" Name="Price" />
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{x:Bind price}" Name="Price" />
                                 <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="Price" Margin="5,0">VND</TextBlock>
                             </RelativePanel>
                             <RelativePanel Grid.Column="4">
                                 <Button RelativePanel.AlignVerticalCenterWithPanel="True" 
                                         RelativePanel.AlignHorizontalCenterWithPanel="True"
-                                        Tag="{x:Bind Id}"
+                                        Tag="{x:Bind id}"
                                         x:Name="DeleteButton"
                                         Click="DeleteButton_Click"
                                 >X</Button>

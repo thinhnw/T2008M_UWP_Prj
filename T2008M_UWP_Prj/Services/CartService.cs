@@ -39,13 +39,13 @@ namespace T2008M_UWP_Prj.Services
                 {
                     CartItem item = new CartItem()
                     {
-                        Id = Convert.ToInt32(statement[0]),
-                        Name = statement[1] as string,
-                        Image = statement[2] as string,
-                        Price = Convert.ToInt32(statement[3]),
-                        Qty = Convert.ToInt32(statement[4]),
+                        id = Convert.ToInt32(statement[0]),
+                        name = statement[1] as string,
+                        image = statement[2] as string,
+                        price = Convert.ToInt32(statement[3]),
+                        qty = Convert.ToInt32(statement[4]),
                     };
-                    return item.Qty;
+                    return item.qty;
                 }
                 return 0;
             } 
@@ -58,19 +58,19 @@ namespace T2008M_UWP_Prj.Services
         {
             try
             {
-                int NumberOfThisItem = ItemCount(item.Id);
+                int NumberOfThisItem = ItemCount(item.id);
                 if (NumberOfThisItem > 0)
                 {
-                    return UpdateItem(item.Id, NumberOfThisItem + item.Qty);
+                    return UpdateItem(item.id, NumberOfThisItem + item.qty);
                 }
                 SQLiteConnection connection = SQLiteHelper.GetInstance()._sQLiteConnection;
                 string sql_txt = "insert into Cart(Id,Name,Image,Price,Qty) values(?,?,?,?,?)";
                 var statement = connection.Prepare(sql_txt);
-                statement.Bind(1, item.Id);
-                statement.Bind(2, item.Name);
-                statement.Bind(3, item.Image);
-                statement.Bind(4, item.Price);
-                statement.Bind(5, item.Qty);
+                statement.Bind(1, item.id);
+                statement.Bind(2, item.name);
+                statement.Bind(3, item.image);
+                statement.Bind(4, item.price);
+                statement.Bind(5, item.qty);
                 var rs = statement.Step();
                 return rs == SQLiteResult.OK;
             }
@@ -109,11 +109,11 @@ namespace T2008M_UWP_Prj.Services
                 {
                     CartItem item = new CartItem()
                     {
-                        Id = Convert.ToInt32(statement[0]),
-                        Name = statement[1] as string,
-                        Image = statement[2] as string,
-                        Price = Convert.ToInt32(statement[3]),
-                        Qty = Convert.ToInt32(statement[4]),
+                        id = Convert.ToInt32(statement[0]),
+                        name = statement[1] as string,
+                        image = statement[2] as string,
+                        price = Convert.ToInt32(statement[3]),
+                        qty = Convert.ToInt32(statement[4]),
                     };
                     list.Add(item);
                 }

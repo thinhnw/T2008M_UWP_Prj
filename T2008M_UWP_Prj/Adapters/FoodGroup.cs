@@ -51,5 +51,9 @@ namespace T2008M_UWP_Prj.Adapters
         {
             get => String.Format(baseURL + "/create-order");
         }
+        public string OrderDetail(int id)
+        {
+            return String.Format(baseURL + "/order/" + id);
+        }
     }
 }

@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="T2008M_UWP_Prj.Pages.OrdersRoute.OrderDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:T2008M_UWP_Prj.Pages.OrdersRoute"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:T2008M_UWP_Prj.Models"    
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <RelativePanel Padding="20,150,20,50">
+        <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" Name="Title" Orientation="Horizontal">
+            <TextBlock FontWeight="Bold" FontSize="30">Order #</TextBlock>
+            <TextBlock FontWeight="Bold" FontSize="30" x:Name="OrderIdTextBlock"></TextBlock>
+        </StackPanel>
+        <ScrollViewer RelativePanel.Below="Title" RelativePanel.Above="Footer" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="0,20">
+            <ItemsControl x:Name="Cart">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:CartItem">
+                        <Grid  MaxWidth="1200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <RelativePanel Grid.Column="0">
+                                <Image>
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{x:Bind bImage.UriSource}" />
+                                    </Image.Source>
+                                </Image>
+                            </RelativePanel>
+                            <RelativePanel Grid.Column="1">
+                                <TextBlock Text="{x:Bind name}" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap"/>
+                            </RelativePanel>
+                            <RelativePanel Grid.Column="2">
+                                <TextBlock x:Name="QuantityTextBox" Text="{x:Bind qty}" Tag="{x:Bind id}"                                                                                   
+                                         RelativePanel.AlignVerticalCenterWithPanel="True"
+                                         RelativePanel.LeftOf="X"
+                                ></TextBlock>
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.LeftOf="Price" Margin="0,0,5,0" Name="X">x</TextBlock>
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="{x:Bind price}" Name="Price" />
+                                <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.RightOf="Price" Margin="5,0">VND</TextBlock>
+                            </RelativePanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <RelativePanel Name="Footer"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                       >
+            <StackPanel RelativePanel.AlignHorizontalCenterWithPanel="True" Orientation="Horizontal" Margin="0,0,30,0">
+                <TextBlock RelativePanel.LeftOf="TotalAmount" FontSize="24" LineHeight="36" Margin="0,10,5,0">Total:</TextBlock>
+                <TextBlock x:Name="TotalAmount" RelativePanel.LeftOf="Currency"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="0,5"></TextBlock>
+                <TextBlock x:Name="Currency" RelativePanel.LeftOf="CheckoutButton"  FontSize="28" FontWeight="Bold" LineHeight="36" Margin="5,5">VND</TextBlock>
+            </StackPanel>
+        </RelativePanel>
+    </RelativePanel>
+</Page>

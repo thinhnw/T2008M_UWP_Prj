@@ -26,10 +26,11 @@ namespace T2008M_UWP_Prj.Services
                 HttpClient httpClient = new HttpClient();
                 Uri uri = new Uri(fg.ApiCreateOrder);
                 HttpStringContent content = new HttpStringContent(
-                        "items:" + JsonConvert.SerializeObject(items),
+                        "{ \"items\": " + JsonConvert.SerializeObject(items) + "}",
                         UnicodeEncoding.Utf8,
                         "application/json"
                 );
+                Debug.WriteLine(JsonConvert.SerializeObject(items));
                 HttpResponseMessage msg = await httpClient.PostAsync(uri, content);
                 msg.EnsureSuccessStatusCode();
                 var rsBody = await msg.Content.ReadAsStringAsync();
@@ -39,6 +40,17 @@ namespace T2008M_UWP_Prj.Services
                 // sau khi nhan duoc order id -> luu vao 1 table trong SQLite de lam trang danh sach don hang
             }
             return null;
+        }
+
+        public async Task<OrderItems> FetchOrderDetail(int id)
+        {
+            FoodGroup api = FoodGroup.GetInstance();
+            HttpClient http = new HttpClient();
+            var msg = await http.GetAsync(new Uri(api.OrderDetail(id)));
+            msg.EnsureSuccessStatusCode();                        
+            var stringContent = await msg.Content.ReadAsStringAsync();
+            OrderItemsWrapper wrapper = JsonConvert.DeserializeObject<OrderItemsWrapper>(stringContent);
+            return wrapper.data;                        
         }
 
         public bool PersistOrder(Order order)
@@ -65,7 +77,7 @@ namespace T2008M_UWP_Prj.Services
             try
             {
                 SQLiteConnection connection = SQLiteHelper.GetInstance()._sQLiteConnection;
-                string sql_txt = "select * from CustomerOrder";
+                string sql_txt = "select * from CustomerOrder ORDER BY timestamp DESC";
                 var statement = connection.Prepare(sql_txt);
                 while (SQLiteResult.ROW == statement.Step())
                 {

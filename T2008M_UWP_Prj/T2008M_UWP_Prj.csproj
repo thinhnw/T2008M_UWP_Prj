@@ -137,6 +137,9 @@
     <Compile Include="Pages\OrdersRoute\AllOrdersPage.xaml.cs">
       <DependentUpon>AllOrdersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrdersRoute\OrderDetail.xaml.cs">
+      <DependentUpon>OrderDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Products\FoodByCategoryPage.xaml.cs">
       <DependentUpon>FoodByCategoryPage.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrdersRoute\AllOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrdersRoute\OrderDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

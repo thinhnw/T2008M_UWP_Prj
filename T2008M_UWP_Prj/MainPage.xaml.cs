@@ -55,7 +55,7 @@ namespace T2008M_UWP_Prj
         private void Menu_Loaded(object sender, RoutedEventArgs e)
         {
             Menu.Items.Add(new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uEC19", ComponentName = "HomeItem" });
-            Menu.Items.Add(new MenuItem() { Name = "Eat-In", MenuPage = "eat-in", Icon = "\uED56", ComponentName = "EatInItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Menu", MenuPage = "eat-in", Icon = "\uED56", ComponentName = "EatInItem" });
             Menu.Items.Add(new MenuItem() { Name = "Shopping Cart", MenuPage = "cart", Icon = "\ue7bf", ComponentName = "CollectionItem" });
             Menu.Items.Add(new MenuItem() { Name = "Orders", MenuPage = "order", Icon = "\ue71d", ComponentName = "OrderItem" });
             //Menu.Items.Add(new MenuItem() { Name = "Take Away", MenuPage = "take-away", Icon = "\uED56 ", ComponentName = "TakeAwayItem" });

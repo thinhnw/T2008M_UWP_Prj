@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using T2008M_UWP_Prj.Models;
 using T2008M_UWP_Prj.Services;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -13,7 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using T2008M_UWP_Prj.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,30 +22,31 @@ namespace T2008M_UWP_Prj.Pages.OrdersRoute
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AllOrdersPage : Page
+    public sealed partial class OrderDetail : Page
     {
-        OrderService orderService;
-        public AllOrdersPage()
+        int id;
+        public OrderDetail()
         {
             this.InitializeComponent();
         }
 
-        private void OrderList_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RenderOrderList();
-        }
-        public void RenderOrderList()
-        {
-            orderService = new OrderService();
-
-            List<Order> orderList = orderService.GetOrderList();
-            OrderList.ItemsSource = orderList;
+            id = (int) e.Parameter;
+            OrderIdTextBlock.Text = id.ToString();
+            RenderOrderDetail(id);
         }
 
-        private void Detail_Click(object sender, RoutedEventArgs e)
+        public async void RenderOrderDetail(int id)
         {
-            int id = (int)((Button)sender).Tag;
-            MainPage.MainFrame.Navigate(typeof(Pages.OrdersRoute.OrderDetail), id);
+            OrderService service = new OrderService();
+            OrderItems orderItems = await service.FetchOrderDetail(id);
+            if (orderItems != null)
+            {
+                Cart.ItemsSource = orderItems.items;
+                TotalAmount.Text = orderItems.items.Sum(item => item.price).ToString();
+            }
         }
     }
+    
 }

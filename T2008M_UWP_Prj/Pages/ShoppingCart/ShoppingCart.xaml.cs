@@ -100,6 +100,7 @@ namespace T2008M_UWP_Prj.Pages.ShoppingCart
             OrderService orderService = new OrderService();
             _ = orderService.CreateOrder();
             service.ClearCart();
+            RenderCart();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

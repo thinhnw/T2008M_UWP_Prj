@@ -60,14 +60,15 @@ namespace T2008M_UWP_Prj.Pages.Products
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if (QuantityTextBox.Text == "0") return;
             CartService cart = new CartService();
             CartItem item = new CartItem()
             {
-                Id = FoodDetail.id,
-                Name = FoodDetail.name,
-                Image = FoodDetail.image,
-                Price = FoodDetail.price,
-                Qty = Int32.Parse(QuantityTextBox.Text),
+                id = FoodDetail.id,
+                name = FoodDetail.name,
+                image = FoodDetail.image,
+                price = FoodDetail.price,
+                qty = Int32.Parse(QuantityTextBox.Text),
             };
             cart.AddToCart(item);
             QuantityTextBox.Text = "0";
