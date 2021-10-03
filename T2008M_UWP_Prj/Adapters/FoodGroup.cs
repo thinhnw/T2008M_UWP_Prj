@@ -46,5 +46,10 @@ namespace T2008M_UWP_Prj.Adapters
         {
             return String.Format(baseURL + "/food/" + id);
         }
+
+        public string ApiCreateOrder
+        {
+            get => String.Format(baseURL + "/create-order");
+        }
     }
 }

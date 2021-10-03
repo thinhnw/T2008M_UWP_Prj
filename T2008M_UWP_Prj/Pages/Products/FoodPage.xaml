@@ -14,32 +14,49 @@
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.AlignVerticalCenterWithPanel="True"
         >
-            <Image 
-                Name="Thumbnail"                          
+            
+            <Border Name="Thumbnail"                                          
                 RelativePanel.AlignLeftWithPanel="True"
-                RelativePanel.AlignVerticalCenterWithPanel="True"
-                Width="350"
-                Height="330"
+                RelativePanel.AlignTopWithPanel="True"
+                Width="300"
+                Height="300"                                
+                    BorderBrush="#ddd"
+                    BorderThickness="1"
+                    Margin="0,0,20,0"
             >
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind FoodDetail.bImage.UriSource}" />
-                </Image.Source>
-            </Image>
-            <StackPanel
+                <Image 
+                    Width="300"
+                    Height="300"                                
+                >
+                    <Image.Source>
+                        <BitmapImage UriSource="{x:Bind FoodDetail.bImage.UriSource}" />
+                    </Image.Source>
+                </Image>
+            </Border>
+            <RelativePanel                
                 RelativePanel.AlignRightWithPanel="True"
-                RelativePanel.RightOf="Thumbnail" Width="400"
+                RelativePanel.RightOf="Thumbnail"
+                RelativePanel.AlignBottomWithPanel="True"
+                RelativePanel.AlignTopWithPanel="True"
             >
-                <TextBlock Name="NameTextBlock" FontSize="24" FontWeight="Bold" FontFamily="Helvatica" TextWrapping="Wrap"/>
-                <TextBlock Name="PriceTextBlock" FontSize="20" FontWeight="Bold" Foreground="#F4AE07" FontFamily="Helvatica" />
-                <TextBlock>-------------------------------------------------</TextBlock>
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <TextBlock Margin="0,0,10,0" VerticalAlignment="Center">Quantity</TextBlock>
+                <StackPanel Name="Header" RelativePanel.Above="Quantity" MaxWidth="300">
+                    <TextBlock Name="NameTextBlock" FontSize="24" FontWeight="Bold" FontFamily="Helvatica" TextWrapping="Wrap"/>
+                    <TextBlock Name="PriceTextBlock" FontSize="20" FontWeight="Bold" Foreground="#F4AE07" FontFamily="Helvatica" />
+                    <TextBlock>-------------------------------------------------</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Name="Quantity"
+                             RelativePanel.AlignVerticalCenterWithPanel="True"
+                >
+                    <TextBlock Margin="0,0,50,0" VerticalAlignment="Center">Quantity</TextBlock>
                     <Button x:Name="ReduceQuantityButton" Click="ReduceQuantityButton_Click">-</Button>
                     <TextBox x:Name="QuantityTextBox" BeforeTextChanging="QuantityTextBox_BeforeTextChanging"></TextBox>
                     <Button x:Name="IncreaseQuantityButton" Click="IncreaseQuantityButton_Click">+</Button>
                 </StackPanel>
-                <Button Margin="0,20,0,0" Background="#F4AE07" Foreground="White" Padding="20 5" Name="AddButton" Click="AddButton_Click">Add to cart</Button>
-            </StackPanel>
+                <Button Margin="0,50,0,0" Background="#F4AE07" Foreground="White" Padding="20 5" Name="AddButton" Click="AddButton_Click"
+                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="Quantity"
+                        HorizontalAlignment="Stretch"
+                >Add to cart</Button>
+            </RelativePanel>
             
         </RelativePanel>
         <Button RelativePanel.AlignBottomWithPanel="True" Name="Back" Click="Back_Click" Background="White" Foreground="DeepSkyBlue" Margin="20">

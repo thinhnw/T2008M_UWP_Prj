@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using T2008M_UWP_Prj.Pages.Products;
+using T2008M_UWP.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -96,7 +97,9 @@ namespace T2008M_UWP_Prj.Pages.ShoppingCart
 
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OrderService orderService = new OrderService();
+            _ = orderService.CreateOrder();
+            service.ClearCart();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

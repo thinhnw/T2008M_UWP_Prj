@@ -24,9 +24,15 @@ namespace T2008M_UWP_Prj.Adapters
 
             // tao table Cart
             var sql_txt = @"create table if not exists Cart(Id integer primary key, Name varchar(255), Image varchar(255), Price integer,Qty integer)";
-            var statement = _sQLiteConnection.Prepare(sql_txt);
-            statement.Step();
+            var statement1 = _sQLiteConnection.Prepare(sql_txt);
+            statement1.Step();
+
+            //sql_txt = @"create table if not exists CartPro(Id integer primary key, Name varchar(255), Image varchar(255), Price integer,Qty integer)";
+            sql_txt = @"create table if not exists CustomerOrder(Id integer, Timestamp timestamp DEFAULT CURRENT_TIMESTAMP)";
+            var statement2 = _sQLiteConnection.Prepare(sql_txt);
+            statement2.Step();
         }
+      
 
 
         public static SQLiteHelper GetInstance()

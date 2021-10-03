@@ -47,6 +47,7 @@ namespace T2008M_UWP_Prj
             pages.Add(typeof(Pages.Home.HomePage));
             pages.Add(typeof(Pages.Products.ProductsIndexPage));
             pages.Add(typeof(Pages.ShoppingCart.ShoppingCart));
+            pages.Add(typeof(Pages.OrdersRoute.AllOrdersPage));
 
             MainFrame.Navigate(pages[Menu.SelectedIndex]);
         }
@@ -56,7 +57,7 @@ namespace T2008M_UWP_Prj
             Menu.Items.Add(new MenuItem() { Name = "Home", MenuPage = "home", Icon = "\uEC19", ComponentName = "HomeItem" });
             Menu.Items.Add(new MenuItem() { Name = "Eat-In", MenuPage = "eat-in", Icon = "\uED56", ComponentName = "EatInItem" });
             Menu.Items.Add(new MenuItem() { Name = "Shopping Cart", MenuPage = "cart", Icon = "\ue7bf", ComponentName = "CollectionItem" });
-            //Menu.Items.Add(new MenuItem() { Name = "Delivery", MenuPage = "delivery", Icon = "\uED57 ", ComponentName = "DeliveryItem" });
+            Menu.Items.Add(new MenuItem() { Name = "Orders", MenuPage = "order", Icon = "\ue71d", ComponentName = "OrderItem" });
             //Menu.Items.Add(new MenuItem() { Name = "Take Away", MenuPage = "take-away", Icon = "\uED56 ", ComponentName = "TakeAwayItem" });
             //Menu.Items.Add(new MenuItem() { Name = "Driver Payment", MenuPage = "driver-payment", Icon = "\uE9A6 ", ComponentName = "DriverPaymentItem" });
             //Menu.Items.Add(new MenuItem() { Name = "Customers", MenuPage = "customers", Icon = "\uE77B ", ComponentName = "CustomersItem" });
